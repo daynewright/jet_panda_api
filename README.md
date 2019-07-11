@@ -1,4 +1,4 @@
-Jet Panda API ✈️ 🐼
+# Jet Panda API ✈️ 🐼
 
 Simple API used to search for items for sell based on search criteria for:
  - VarageSale
@@ -6,4 +6,3 @@ Simple API used to search for items for sell based on search criteria for:
  - Facebook Marketplace
  - Ebay
 
- 
