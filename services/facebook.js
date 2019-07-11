@@ -2,7 +2,12 @@ const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 
 exports.getItems = async (search) => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+     args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+      ]
+    });
     const page = await browser.newPage();
     await page.goto(`https://www.facebook.com/marketplace/search/?query=${search}`, {waitUntil: 'networkidle0'});
     // await page.setGeolocation({latitude: 59.95, longitude: 30.31667});
