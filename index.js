@@ -40,5 +40,5 @@ app.get('/all', async (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, function () {
-    console.log('Jet Panda API listening on port 3000!');
+    console.log(`Jet Panda API listening on port ${process.env.PORT || 3000}!`);
   });
