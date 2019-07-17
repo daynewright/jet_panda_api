@@ -10,7 +10,7 @@ exports.getItems = search => {
             let results = [];
 
             $('.s-item').each((i, element) => {
-                const image = $(element).find('.s-item__image-img').attr('src');
+                const image = $(element).find('#icImg').attr('src');
                 const price = $(element).find('.s-item__price').text().replace('$', '');
                 const shipping = $(element).find('.s-item__shipping').text();
                 const link = $(element).find('.s-item__link').attr('href');
