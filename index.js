@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const bodyParser = require('body-parser');
 
 const varageSale = require('./services/varageSale');
@@ -7,6 +8,22 @@ const ebay = require('./services/ebay');
 const facebook = require('./services/facebook');
 
 const app = express();
+
+const allowedOrigins = ['http://localhost:3000', ''];
+
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin 
+    // (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 app.get('/varagesale/:location', (req, res) => {
     varageSale.getItems('nashville-davidson-murfreesboro-franklin-tn-nc', req.query.search).then(resp => res.send(resp));
