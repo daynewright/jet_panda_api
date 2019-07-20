@@ -45,7 +45,6 @@ exports.getItems = async (search) => {
     });
 
     await browser.close();
-    console.warn(results);
     return results;
 };
 
