@@ -9,7 +9,7 @@ const facebook = require('./services/facebook');
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000', ''];
+const allowedOrigins = ['http://localhost:3000', 'https://jet-panda.herokuapp.com'];
 
 app.use(cors({
   origin: function(origin, callback){
