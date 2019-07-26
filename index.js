@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors')
+const DelayedResponse = require('http-delayed-response');
 const bodyParser = require('body-parser');
 
 const varageSale = require('./services/varageSale');
@@ -44,15 +45,17 @@ app.get('/facebook', (req, res) => {
 });
 
 app.get('/all', (req, res) => {
-  const search = encodeURI(req.query.search);
+  const delayed = new DelayedResponse(req, res);
 
-  getAll.getItems(search).then(resp => res.send(resp));
+  const slowfunction = () => {
+    const search = encodeURI(req.query.search);
+    getAll.getItems(search).then(resp => delayed.end(null, resp));
+  }
+
+  slowfunction(delayed.start(5000, 5000));
 });
 
 app.listen(process.env.PORT || 3000, function () {
     console.log(`Jet Panda API listening on port ${process.env.PORT || 3000}!`);
-  });
-
-// increase timeout to 60sec //
-  app.timeout = 60000;
+});
 
