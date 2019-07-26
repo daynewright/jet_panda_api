@@ -52,3 +52,7 @@ app.get('/all', (req, res) => {
 app.listen(process.env.PORT || 3000, function () {
     console.log(`Jet Panda API listening on port ${process.env.PORT || 3000}!`);
   });
+
+// increase timeout to 60sec //
+  app.timeout = 60000;
+
