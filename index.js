@@ -6,10 +6,11 @@ const varageSale = require('./services/varageSale');
 const offerUp = require('./services/offerUp');
 const ebay = require('./services/ebay');
 const facebook = require('./services/facebook');
+const getAll = require('./services/all');
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000', 'https://jet-panda.herokuapp.com'];
+const allowedOrigins = ['http://localhost:3001', 'https://jet-panda.herokuapp.com'];
 
 app.use(cors({
   origin: function(origin, callback){
@@ -42,18 +43,10 @@ app.get('/facebook', (req, res) => {
     facebook.getItems(req.query.search).then(resp => res.send(resp));
 });
 
-app.get('/all', async (req, res) => {
-    const VARAGESALE = await varageSale.getItems('nashville-davidson-murfreesboro-franklin-tn-nc', req.query.search);
-    const OFFERUP = await offerUp.getItems(req.query.search);
-    const EBAY = await ebay.getItems(req.query.search);
-    const FACEBOOK = await facebook.getItems(req.query.search);
+app.get('/all', (req, res) => {
+  const search = encodeURI(req.query.search);
 
-    res.send({
-        VARAGESALE,
-        OFFERUP,
-        EBAY,
-        FACEBOOK
-    });
+  getAll.getItems(search).then(resp => res.send(resp));
 });
 
 app.listen(process.env.PORT || 3000, function () {
