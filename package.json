@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-delayed-response": "0.0.4",
-    "node-geocoder": "^3.23.0",
+    "node-geocoder": "^3.27.0",
     "puppeteer": "^1.19.0",
     "request": "^2.88.0"
   }
