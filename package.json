@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "http-delayed-response": "0.0.4",
     "node-geocoder": "^3.23.0",
-    "puppeteer": "^1.19.0",
+    "puppeteer": "^3.3.0",
     "request": "^2.88.0"
   }
 }
